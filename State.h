@@ -1,6 +1,6 @@
 #pragma once
 
-
+struct Telegram;
 
 enum class Location_Type { HOME, GOLDMINE, PUB, BANK };
 
@@ -14,6 +14,8 @@ public:
 	virtual void Enter(Entity*) = 0;
 	virtual void Execute(Entity*) = 0;
 	virtual void Exit(Entity*) = 0;
+	
+	virtual bool OnMessage(Entity*, const Telegram&) = 0;
 
 private:
 	State(const State&) = delete;

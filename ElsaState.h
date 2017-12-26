@@ -14,6 +14,8 @@ public:
 	virtual void Execute(Elsa*);
 	virtual void Exit(Elsa*);
 
+	virtual bool OnMessage(Elsa*, const Telegram&);
+
 private:
 	ElsaGlobalState() {};
 	~ElsaGlobalState() {}
@@ -30,6 +32,8 @@ public:
 	virtual void Execute(Elsa*);
 	virtual void Exit(Elsa*);
 
+	virtual bool OnMessage(Elsa*, const Telegram&);
+
 private:
 	DoHouseworkState() {};
 	~DoHouseworkState() {}
@@ -45,6 +49,8 @@ public:
 	virtual void Enter(Elsa*);
 	virtual void Execute(Elsa*);
 	virtual void Exit(Elsa*);
+
+	virtual bool OnMessage(Elsa*, const Telegram&);
 
 private:
 	VisitBathroomState() {};

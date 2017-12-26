@@ -1,8 +1,9 @@
 #include "Miner.h"
 #include "Elsa.h"
 #include <iostream>
-
 #include <windows.h>
+
+
 
 int main()
 {

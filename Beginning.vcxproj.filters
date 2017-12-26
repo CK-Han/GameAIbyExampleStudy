@@ -22,6 +22,9 @@
     <Filter Include="StateMachine">
       <UniqueIdentifier>{0aafe8a6-20ce-4311-81b5-f14e17177866}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Message">
+      <UniqueIdentifier>{f4026778-8536-4b2a-b732-4d316cd27262}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,6 +51,12 @@
     <ClCompile Include="ElsaState.cpp">
       <Filter>State</Filter>
     </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageDispatcher.cpp">
+      <Filter>Message</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyMath.h">
@@ -73,6 +82,18 @@
     </ClInclude>
     <ClInclude Include="ElsaState.h">
       <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="Telegram.h">
+      <Filter>Message</Filter>
+    </ClInclude>
+    <ClInclude Include="Messages.h">
+      <Filter>Message</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageDispatcher.h">
+      <Filter>Message</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

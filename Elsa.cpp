@@ -20,6 +20,11 @@ void Elsa::Update()
 	stateMachine->Update();
 }
 
+bool Elsa::HandleMessage(const Telegram& msg)
+{
+	return stateMachine->HandleMessage(msg);
+}
+
 void Elsa::ChangeState(State<Elsa>* newState)
 {
 	stateMachine->ChangeState(newState);

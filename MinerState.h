@@ -14,6 +14,8 @@ public:
 	virtual void Execute(Miner*);
 	virtual void Exit(Miner*);
 
+	virtual bool OnMessage(Miner*, const Telegram&);
+
 private:
 	EnterMineAndDigForNugget() {};
 	~EnterMineAndDigForNugget() {}
@@ -29,6 +31,8 @@ public:
 	virtual void Enter(Miner*);
 	virtual void Execute(Miner*);
 	virtual void Exit(Miner*);
+
+	virtual bool OnMessage(Miner*, const Telegram&);
 
 private:
 	VisitBankAndDepositGold() {};
@@ -46,6 +50,8 @@ public:
 	virtual void Execute(Miner*);
 	virtual void Exit(Miner*);
 
+	virtual bool OnMessage(Miner*, const Telegram&);
+
 private:
 	GoHomeAndSleepTilRested() {};
 	~GoHomeAndSleepTilRested() {}
@@ -62,6 +68,8 @@ public:
 	virtual void Execute(Miner*);
 	virtual void Exit(Miner*);
 
+	virtual bool OnMessage(Miner*, const Telegram&);
+
 private:
 	QuenchThirst() {};
 	~QuenchThirst() {}
@@ -77,6 +85,8 @@ public:
 	virtual void Enter(Miner*);
 	virtual void Execute(Miner*);
 	virtual void Exit(Miner*);
+
+	virtual bool OnMessage(Miner*, const Telegram&);
 
 private:
 	MinerGlobalState() {};

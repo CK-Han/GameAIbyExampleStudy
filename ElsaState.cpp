@@ -29,6 +29,11 @@ void ElsaGlobalState::Exit(Elsa* elsa)
 {	
 }
 
+bool ElsaGlobalState::OnMessage(Elsa*, const Telegram&)
+{
+	return false;
+}
+
 //ElsaGlobalState
 //////////////////////////////////////////////////////////////////////////
 
@@ -70,6 +75,11 @@ void DoHouseworkState::Exit(Elsa* elsa)
 {
 }
 
+bool DoHouseworkState::OnMessage(Elsa*, const Telegram&)
+{
+	return false;
+}
+
 //DoHouseworkState
 //////////////////////////////////////////////////////////////////////////
 
@@ -96,6 +106,11 @@ void VisitBathroomState::Execute(Elsa* elsa)
 
 void VisitBathroomState::Exit(Elsa* elsa)
 {
+}
+
+bool VisitBathroomState::OnMessage(Elsa*, const Telegram&)
+{
+	return false;
 }
 
 //VisitBathroomState

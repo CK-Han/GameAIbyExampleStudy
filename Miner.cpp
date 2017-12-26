@@ -1,6 +1,6 @@
 #include "Miner.h"
 #include "MinerState.h"
-
+#include "Telegram.h"
 
 Miner::Miner(int newId)
 	: BaseGameEntity(newId)
@@ -23,6 +23,11 @@ void Miner::Update()
 {
 	++thirstyCount;
 	stateMachine->Update();
+}
+
+bool Miner::HandleMessage(const Telegram& msg)
+{
+	return stateMachine->HandleMessage(msg);
 }
 
 void Miner::ChangeState(State<Miner>* newState)

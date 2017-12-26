@@ -1,5 +1,7 @@
 #pragma once
 
+struct Telegram;
+
 class BaseGameEntity
 {
 public:
@@ -10,6 +12,7 @@ public:
 	virtual ~BaseGameEntity() {}
 
 	virtual void Update() = 0;
+	virtual bool HandleMessage(const Telegram& msg) = 0;
 	int GetId() const { return id; }
 
 private:

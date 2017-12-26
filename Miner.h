@@ -19,6 +19,7 @@ public:
 	virtual ~Miner();
 
 	void Update();
+	bool HandleMessage(const Telegram& msg);
 	void ChangeState(State<Miner>* newState);
 	void ChangeLocation(Location_Type newLocation);
 

@@ -11,6 +11,7 @@ public:
 	~Elsa();
 
 	void Update();
+	bool HandleMessage(const Telegram& msg);
 	void ChangeState(State<Elsa>* newState);
 
 private:

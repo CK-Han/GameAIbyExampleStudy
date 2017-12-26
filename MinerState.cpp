@@ -44,6 +44,11 @@ void EnterMineAndDigForNugget::Exit(Miner* miner)
 	std::cout << miner->GetId() << " : " << "leavin' goldmine\n";
 }
 
+bool EnterMineAndDigForNugget::OnMessage(Miner*, const Telegram&)
+{
+	return false;
+}
+
 //EnterMineAndDigForNugget
 //////////////////////////////////////////////////////////////////////////
 
@@ -90,6 +95,11 @@ void VisitBankAndDepositGold::Exit(Miner* miner)
 	std::cout << miner->GetId() << " : " << "leavin' bank\n";
 }
 
+bool VisitBankAndDepositGold::OnMessage(Miner*, const Telegram&)
+{
+	return false;
+}
+
 //VisitBankAndDepositGold
 //////////////////////////////////////////////////////////////////////////
 
@@ -129,6 +139,11 @@ void GoHomeAndSleepTilRested::Execute(Miner* miner)
 void GoHomeAndSleepTilRested::Exit(Miner* miner)
 {
 	std::cout << miner->GetId() << " : " << "leavin' home\n";
+}
+
+bool GoHomeAndSleepTilRested::OnMessage(Miner*, const Telegram&)
+{
+	return false;
 }
 
 //GoHomeAndSleepTilRested
@@ -172,6 +187,11 @@ void QuenchThirst::Exit(Miner* miner)
 	std::cout << miner->GetId() << " : " << "leavin' pub\n";
 }
 
+bool QuenchThirst::OnMessage(Miner*, const Telegram&)
+{
+	return false;
+}
+
 //QuenchThirst
 //////////////////////////////////////////////////////////////////////////
 
@@ -198,6 +218,11 @@ void MinerGlobalState::Execute(Miner* miner)
 void MinerGlobalState::Exit(Miner* miner)
 {
 
+}
+
+bool MinerGlobalState::OnMessage(Miner*, const Telegram&)
+{
+	return false;
 }
 
 //MinerGlobalState

@@ -56,6 +56,15 @@ public:
 		return false;
 	}
 
+	bool HandleMessage(const Telegram& msg) const
+	{
+		if (currentState && currentState->OnMessage(owner, msg))
+			return true;
+		if (globalState && globalState->OnMessage(owner, msg))
+			return true;
+		return false;
+	}
+
 private:
 	Entity_Type*				owner;
 	State<Entity_Type>*			currentState;
