@@ -1,9 +1,11 @@
 #ifndef __MYMATH__
 #define __MYMATH__
 
-
 namespace MyMath
 {
+	int GetRandInteger(int from, int to);
+
+
 	struct Vector2D
 	{
 		typedef double Type;

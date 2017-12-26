@@ -42,8 +42,11 @@
     <ClCompile Include="MinerState.cpp">
       <Filter>State</Filter>
     </ClCompile>
-    <ClCompile Include="StateMachine.cpp">
-      <Filter>StateMachine</Filter>
+    <ClCompile Include="Elsa.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="ElsaState.cpp">
+      <Filter>State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +67,12 @@
     </ClInclude>
     <ClInclude Include="StateMachine.h">
       <Filter>StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Elsa.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="ElsaState.h">
+      <Filter>State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

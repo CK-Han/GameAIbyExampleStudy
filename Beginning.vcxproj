@@ -143,15 +143,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseGameEntity.cpp" />
+    <ClCompile Include="Elsa.cpp" />
+    <ClCompile Include="ElsaState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Miner.cpp" />
     <ClCompile Include="MinerState.cpp" />
     <ClCompile Include="MyMath.cpp" />
     <ClCompile Include="State.cpp" />
-    <ClCompile Include="StateMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEntity.h" />
+    <ClInclude Include="Elsa.h" />
+    <ClInclude Include="ElsaState.h" />
     <ClInclude Include="Miner.h" />
     <ClInclude Include="MinerState.h" />
     <ClInclude Include="MyMath.h" />
