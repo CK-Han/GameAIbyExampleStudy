@@ -148,6 +148,7 @@
     <ClCompile Include="MinerState.cpp" />
     <ClCompile Include="MyMath.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEntity.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="MinerState.h" />
     <ClInclude Include="MyMath.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="StateMachine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

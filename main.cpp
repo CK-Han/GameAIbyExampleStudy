@@ -1,7 +1,14 @@
-
-
+#include "Miner.h"
+#include <iostream>
 
 int main()
 {
-	return 0;
+	Miner miner(0);
+
+	while (true)
+	{
+		::_sleep(1000);
+		std::cout << std::endl;
+		miner.Update();
+	}
 }

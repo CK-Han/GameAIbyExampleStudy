@@ -1,19 +1,19 @@
 #include "Miner.h"
-
-
+#include "MinerState.h"
 
 
 Miner::Miner(int newId)
 	: BaseGameEntity(newId)
-	, currentState()
-	, location()
-	, goldsInPocket()
-	, goldsInBank()
-	, thirstyCount()
-	, fatigueCount()
+	, stateMachine(new StateMachine<Miner>(this))
+	, location(Location_Type::GOLDMINE)
+	, goldsInPocket(0)
+	, goldsInBank(0)
+	, thirstyCount(0)
+	, fatigueCount(0)
 {
+	stateMachine->SetCurrentState(EnterMineAndDigForNugget::GetInstance());
+	stateMachine->SetGlobalState(MinerGlobalState::GetInstance());
 }
-
 
 Miner::~Miner()
 {
@@ -22,22 +22,12 @@ Miner::~Miner()
 void Miner::Update()
 {
 	++thirstyCount;
-	if (currentState)
-	{
-		currentState->Execute(this);
-	}
+	stateMachine->Update();
 }
 
-void Miner::ChangeState(State* newState)
+void Miner::ChangeState(State<Miner>* newState)
 {
-	if (currentState == nullptr || newState == nullptr)
-	{
-		//error
-	}
-
-	currentState->Exit(this);
-	currentState = newState;
-	currentState->Enter(this);
+	stateMachine->ChangeState(newState);
 }
 
 void Miner::ChangeLocation(Location_Type newLocation)
@@ -56,18 +46,58 @@ void Miner::IncreaseFatigue()
 	++fatigueCount;
 }
 
+void Miner::DepositGold()
+{
+	goldsInBank += goldsInPocket;
+	goldsInPocket = 0;
+}
+
+void Miner::SleepAndRest()
+{
+	fatigueCount -= FATIGUE_HEALING_COUNT;
+	if (fatigueCount < 0)
+		fatigueCount = 0;
+}
+
+void Miner::DrinkBeer()
+{
+	thirstyCount -= THIRSTY_HEALING_COUNT;
+	if (thirstyCount < 0)
+		thirstyCount = 0;
+}
+
 bool Miner::IsThirsty() const
 {
-	return true;
+	if(MAX_THIRSTY <= thirstyCount)
+		return true;
+	return false;
 }
 
 bool Miner::IsPocketFull() const
 {
-	return true;
+	if(POCKET_SIZE <= goldsInPocket)
+		return true;
+	return false;
 }
 
-bool Miner::IsMaxFatigue() const
+bool Miner::IsEnoughRested() const
 {
-	return true;
+	if(FATIGUE_TO_WORK >= fatigueCount)
+		return true;
+	return false;
+}
+
+bool Miner::IsEnoughDrinked() const
+{
+	if (THIRSTY_TO_WORK <= thirstyCount)
+		return true;
+	return false;
+}
+
+bool Miner::IsEnoughDepositGold() const
+{
+	if (ENOUGH_DEPOSIT <= goldsInBank)
+		return true;
+	return false;
 }
 

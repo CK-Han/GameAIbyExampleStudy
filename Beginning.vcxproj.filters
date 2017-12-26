@@ -19,6 +19,9 @@
     <Filter Include="State">
       <UniqueIdentifier>{449c85fb-75b5-43c3-a1d1-9f36f130a023}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StateMachine">
+      <UniqueIdentifier>{0aafe8a6-20ce-4311-81b5-f14e17177866}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -39,6 +42,9 @@
     <ClCompile Include="MinerState.cpp">
       <Filter>State</Filter>
     </ClCompile>
+    <ClCompile Include="StateMachine.cpp">
+      <Filter>StateMachine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyMath.h">
@@ -55,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="MinerState.h">
       <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>StateMachine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
