@@ -56,3 +56,22 @@ private:
 	VisitBathroomState() {};
 	~VisitBathroomState() {}
 };
+
+
+
+class CookStewState
+	: public State<Elsa>
+{
+public:
+	static CookStewState* GetInstance();
+
+	virtual void Enter(Elsa*);
+	virtual void Execute(Elsa*);
+	virtual void Exit(Elsa*);
+
+	virtual bool OnMessage(Elsa*, const Telegram&);
+
+private:
+	CookStewState() {};
+	~CookStewState() {}
+};

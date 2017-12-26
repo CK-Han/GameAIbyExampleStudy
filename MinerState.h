@@ -92,3 +92,22 @@ private:
 	MinerGlobalState() {};
 	~MinerGlobalState() {}
 };
+
+
+
+class EatStewState
+	: public State<Miner>
+{
+public:
+	static EatStewState* GetInstance();
+
+	virtual void Enter(Miner*);
+	virtual void Execute(Miner*);
+	virtual void Exit(Miner*);
+
+	virtual bool OnMessage(Miner*, const Telegram&);
+
+private:
+	EatStewState() {};
+	~EatStewState() {}
+};

@@ -14,7 +14,11 @@ public:
 	bool HandleMessage(const Telegram& msg);
 	void ChangeState(State<Elsa>* newState);
 
+	void SetCooking(bool cooking);
+	bool IsCooking() const;
+
 private:
 	std::unique_ptr<StateMachine<Elsa>>	stateMachine;
+	bool	isCooking;
 };
 

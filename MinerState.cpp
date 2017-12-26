@@ -1,6 +1,6 @@
 #include "MinerState.h"
 #include "Miner.h"
-
+#include "MessageDispatcher.h"
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////
@@ -119,17 +119,22 @@ void GoHomeAndSleepTilRested::Enter(Miner* miner)
 	{
 		std::cout << miner->GetId() << " : " << "walkin' to the HOME\n";
 		miner->ChangeLocation(Location_Type::HOME);
+
+		MessageDispatcher::GetInstance()->DispatchMessage(
+			0, miner->GetId(), Entity_Id::ELSA, Msg_HiHoneyImHome, nullptr);
+
+		miner->SetWaitingStew(true);
 	}
 }
 
 void GoHomeAndSleepTilRested::Execute(Miner* miner)
 {
-	if (miner->IsEnoughRested())
+	if (miner->IsEnoughRested() && miner->IsWaitingStew() == false)
 	{
 		std::cout << miner->GetId() << " : " << "ah! I rested enough!! \n";
 		miner->ChangeState(EnterMineAndDigForNugget::GetInstance());
 	}
-	else
+	else 
 	{
 		std::cout << miner->GetId() << " : " << "umm... I need more rest... \n";
 		miner->SleepAndRest();
@@ -141,8 +146,16 @@ void GoHomeAndSleepTilRested::Exit(Miner* miner)
 	std::cout << miner->GetId() << " : " << "leavin' home\n";
 }
 
-bool GoHomeAndSleepTilRested::OnMessage(Miner*, const Telegram&)
+bool GoHomeAndSleepTilRested::OnMessage(Miner* miner, const Telegram& msg)
 {
+	switch (msg.Msg)
+	{
+	case Msg_StewReady:
+		std::cout << miner->GetId() << " : " << "Okay hun, it looks so delicious!\n";
+		miner->ChangeState(EatStewState::GetInstance());
+		return true;
+	}
+
 	return false;
 }
 
@@ -226,4 +239,39 @@ bool MinerGlobalState::OnMessage(Miner*, const Telegram&)
 }
 
 //MinerGlobalState
+//////////////////////////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////////////////////////////
+//EatStewState
+EatStewState*
+EatStewState::GetInstance()
+{
+	static EatStewState instance;
+	return &instance;
+}
+
+void EatStewState::Enter(Miner* miner)
+{
+}
+
+void EatStewState::Execute(Miner* miner)
+{
+	std::cout << miner->GetId() << " : " << "uhmmmm~ So yummy! thx hun.\n";
+	miner->SetWaitingStew(false);
+	miner->ChangeState(GoHomeAndSleepTilRested::GetInstance());
+}
+
+void EatStewState::Exit(Miner* miner)
+{
+
+}
+
+bool EatStewState::OnMessage(Miner*, const Telegram&)
+{
+	return false;
+}
+
+//EatStewState
 //////////////////////////////////////////////////////////////////////////

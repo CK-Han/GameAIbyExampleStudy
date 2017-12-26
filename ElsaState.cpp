@@ -1,6 +1,8 @@
 #include "ElsaState.h"
 #include "Elsa.h"
 #include "MyMath.h"
+#include "Messages.h"
+#include "MessageDispatcher.h"
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////
@@ -29,8 +31,18 @@ void ElsaGlobalState::Exit(Elsa* elsa)
 {	
 }
 
-bool ElsaGlobalState::OnMessage(Elsa*, const Telegram&)
+bool ElsaGlobalState::OnMessage(Elsa* elsa, const Telegram& msg)
 {
+	switch (msg.Msg)
+	{
+	case Msg_HiHoneyImHome:
+	{
+		std::cout << elsa->GetId() << " : " << "oh honey! Let me make you some of mah fine country stew\n";
+		elsa->ChangeState(CookStewState::GetInstance());
+	}
+		return true;
+	}
+
 	return false;
 }
 
@@ -114,4 +126,56 @@ bool VisitBathroomState::OnMessage(Elsa*, const Telegram&)
 }
 
 //VisitBathroomState
+//////////////////////////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////////////////////////////
+//CookStewState
+CookStewState*
+CookStewState::GetInstance()
+{
+	static CookStewState instance;
+	return &instance;
+}
+
+void CookStewState::Enter(Elsa* elsa)
+{
+}
+
+void CookStewState::Execute(Elsa* elsa)
+{
+	if (elsa->IsCooking() == false)
+	{
+		std::cout << elsa->GetId() << " : " << " Puttin' the stew in the oven\n";
+
+		MessageDispatcher::GetInstance()->DispatchMessage(
+			1.5, elsa->GetId(), elsa->GetId(), Msg_StewReady, nullptr);
+		
+		elsa->SetCooking(true);
+	}
+}
+
+void CookStewState::Exit(Elsa* elsa)
+{
+}
+
+bool CookStewState::OnMessage(Elsa* elsa, const Telegram& msg)
+{
+	switch (msg.Msg)
+	{
+	case Msg_StewReady:
+		std::cout << elsa->GetId() << " : " << " Stew ready! Let's eat!\n";
+		MessageDispatcher::GetInstance()->DispatchMessage(
+			0, elsa->GetId(), BOB, Msg_StewReady, nullptr);
+
+		elsa->SetCooking(false);
+		elsa->ChangeState(DoHouseworkState::GetInstance());
+
+		return true;
+	}
+	return false;
+}
+
+//CookStewState
 //////////////////////////////////////////////////////////////////////////

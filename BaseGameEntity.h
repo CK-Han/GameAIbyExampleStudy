@@ -1,6 +1,7 @@
 #pragma once
 
 struct Telegram;
+enum Entity_Id { BOB, ELSA };
 
 class BaseGameEntity
 {

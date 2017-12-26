@@ -10,7 +10,7 @@ class Miner
 	static const int POCKET_SIZE = 5;
 	static const int FATIGUE_TO_WORK = 5;
 	static const int THIRSTY_TO_WORK = 3;
-	static const int ENOUGH_DEPOSIT = 20;
+	static const int ENOUGH_DEPOSIT = 5;
 	static const int FATIGUE_HEALING_COUNT = 3;
 	static const int THIRSTY_HEALING_COUNT = 4;
 
@@ -30,12 +30,14 @@ public:
 
 	void SleepAndRest();
 	void DrinkBeer();
+	void SetWaitingStew(bool waiting);
 
 	bool IsThirsty() const;
 	bool IsPocketFull() const;
 	bool IsEnoughRested() const;
 	bool IsEnoughDrinked() const;
 	bool IsEnoughDepositGold() const;
+	bool IsWaitingStew() const;
 
 	StateMachine<Miner>* GetFSM() const { return &(*stateMachine); }
 	Location_Type		 GetLocation() const { return location; }
@@ -48,5 +50,6 @@ private:
 	int				goldsInBank;
 	int				thirstyCount;
 	int				fatigueCount;
+	bool			isWaitingStew;
 };
 

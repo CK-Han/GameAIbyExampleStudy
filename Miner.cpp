@@ -1,6 +1,7 @@
 #include "Miner.h"
 #include "MinerState.h"
 #include "Telegram.h"
+#include "EntityManager.h"
 
 Miner::Miner(int newId)
 	: BaseGameEntity(newId)
@@ -10,9 +11,11 @@ Miner::Miner(int newId)
 	, goldsInBank(0)
 	, thirstyCount(0)
 	, fatigueCount(0)
+	, isWaitingStew(false)
 {
 	stateMachine->SetCurrentState(EnterMineAndDigForNugget::GetInstance());
 	stateMachine->SetGlobalState(MinerGlobalState::GetInstance());
+	EntityManager::GetInstance()->RegisterEntity(this);
 }
 
 Miner::~Miner()
@@ -71,6 +74,11 @@ void Miner::DrinkBeer()
 		thirstyCount = 0;
 }
 
+void Miner::SetWaitingStew(bool waiting)
+{
+	isWaitingStew = waiting;
+}
+
 bool Miner::IsThirsty() const
 {
 	if(MAX_THIRSTY <= thirstyCount)
@@ -94,7 +102,7 @@ bool Miner::IsEnoughRested() const
 
 bool Miner::IsEnoughDrinked() const
 {
-	if (THIRSTY_TO_WORK <= thirstyCount)
+	if (THIRSTY_TO_WORK > thirstyCount)
 		return true;
 	return false;
 }
@@ -104,5 +112,10 @@ bool Miner::IsEnoughDepositGold() const
 	if (ENOUGH_DEPOSIT <= goldsInBank)
 		return true;
 	return false;
+}
+
+bool Miner::IsWaitingStew() const
+{
+	return isWaitingStew;
 }
 
