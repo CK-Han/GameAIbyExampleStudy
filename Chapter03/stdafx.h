@@ -19,3 +19,5 @@
 
 
 // TODO: reference additional headers your program requires here
+const int	WINDOW_WIDTH	 = 500;
+const int	WINDOW_HEIGHT	 = 500;

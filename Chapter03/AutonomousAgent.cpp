@@ -3,6 +3,10 @@
 
 #include "stdafx.h"
 #include "AutonomousAgent.h"
+#include "GameFramework.h"
+GameFramework gGameFramework;
+HWND	hwnd;
+bool	isEnded;
 
 #define MAX_LOADSTRING 100
 
@@ -42,15 +46,35 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    // Main message loop:
-    while (GetMessage(&msg, nullptr, 0, 0))
-    {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-    }
+	while(isEnded == false)
+	{
+		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		{
+			if (msg.message == WM_QUIT)
+			{
+				//stop loop if it's a quit message
+				isEnded = true;
+			}
+
+			else
+			{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+		}
+
+		if (msg.message != WM_QUIT)
+		{
+			//update
+			gGameFramework.Update(0);
+
+			//render
+			InvalidateRect(hwnd, nullptr, true);
+			UpdateWindow(hwnd);
+
+			Sleep(10);
+		}
+	}
 
     return (int) msg.wParam;
 }
@@ -98,7 +122,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // Store instance handle in our global variable
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+      CW_USEDEFAULT, 0, WINDOW_WIDTH, WINDOW_HEIGHT, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -107,6 +131,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   hwnd = hWnd;
+   isEnded = false;
 
    return TRUE;
 }
@@ -142,12 +169,27 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+
+	case WM_LBUTTONUP:
+	{
+		gGameFramework.SetPosition(MAKEPOINTS(lParam));
+	}
+	break;
+
+	case WM_RBUTTONUP:
+	{
+		isEnded = true;
+	}
+	break;
+
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: Add any drawing code that uses hdc here...
-            EndPaint(hWnd, &ps);
+		
+			gGameFramework.Render(hdc);
+            
+			EndPaint(hWnd, &ps);
         }
         break;
     case WM_DESTROY:

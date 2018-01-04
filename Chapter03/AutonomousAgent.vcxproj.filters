@@ -13,11 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Entity">
-      <UniqueIdentifier>{913783f3-ec37-47ef-a789-49ccf014fd8e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Common">
-      <UniqueIdentifier>{168994fa-79e9-442d-b05b-095659dfec98}</UniqueIdentifier>
+      <UniqueIdentifier>{75e1d1f6-ad23-4203-ac4d-cbd48a24d372}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,32 +33,23 @@
     <ClInclude Include="AutonomousAgent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BaseGameEntity.h">
-      <Filter>Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingEntity.h">
-      <Filter>Entity</Filter>
+    <ClInclude Include="Vehicle.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Vector2D.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\utils.h">
-      <Filter>Common</Filter>
+    <ClInclude Include="GameFramework.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\C2DMatrix.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="Vehicle.h">
-      <Filter>Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\smoother.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\geometry.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\transformations.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringBehaviors.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -72,7 +60,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Vehicle.cpp">
-      <Filter>Entity</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFramework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringBehaviors.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
