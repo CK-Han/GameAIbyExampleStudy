@@ -66,7 +66,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		if (msg.message != WM_QUIT)
 		{
 			//update
-			gGameFramework.Update(0);
+			gGameFramework.Update();
 
 			//render
 			InvalidateRect(hwnd, nullptr, true);
@@ -170,9 +170,27 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         break;
 
+	case WM_KEYUP:
+	{
+		switch (wParam)
+		{
+		case VK_UP:
+		{
+			gGameFramework.ModifyVehicleMass(0, +0.05);
+		}
+		break;
+		case VK_DOWN:
+		{
+			gGameFramework.ModifyVehicleMass(0, -0.05);
+		}
+		break;
+		}
+	}
+	break;
+
 	case WM_LBUTTONUP:
 	{
-		gGameFramework.SetPosition(MAKEPOINTS(lParam));
+		gGameFramework.Clicked(MAKEPOINTS(lParam));
 	}
 	break;
 

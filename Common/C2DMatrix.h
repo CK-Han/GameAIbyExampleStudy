@@ -87,6 +87,18 @@ public:
 	void _32(double val) { m_Matrix._32 = val; }
 	void _33(double val) { m_Matrix._33 = val; }
 
+	double _11() const { return m_Matrix._11; }
+	double _12() const { return m_Matrix._12; }
+	double _13() const { return m_Matrix._13; }
+	
+	double _21() const { return m_Matrix._21; }
+	double _22() const { return m_Matrix._22; }
+	double _23() const { return m_Matrix._23; }
+	
+	double _31() const { return m_Matrix._31; }
+	double _32() const { return m_Matrix._32; }
+	double _33() const { return m_Matrix._33; }
+
 };
 
 

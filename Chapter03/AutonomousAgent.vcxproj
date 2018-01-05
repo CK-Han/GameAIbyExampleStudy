@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\C2DMatrix.h" />
+    <ClInclude Include="..\Common\Timer.h" />
     <ClInclude Include="..\Common\transformations.h" />
     <ClInclude Include="..\Common\Vector2D.h" />
     <ClInclude Include="AutonomousAgent.h" />
